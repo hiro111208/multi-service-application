@@ -149,6 +149,14 @@ docker compose logs -f nginx
 docker compose logs --tail=100 api
 ```
 
+### Integration validation
+
+Run the full validation suite (stack health, Nginx routing, MongoDB persistence, Redis caching, port exposure):
+
+```bash
+./docker/scripts/validate.sh
+```
+
 Useful commands:
 
 ```bash

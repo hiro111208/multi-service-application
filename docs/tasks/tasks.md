@@ -102,12 +102,12 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 11. Integration and validation
 
-- [ ] Bring up the full stack with `docker compose up --build`
-- [ ] Verify frontend loads through Nginx on the host port
-- [ ] Verify API requests succeed through Nginx and return expected data
-- [ ] Verify MongoDB data persists across container restarts
-- [ ] Verify Redis cache behavior (cache hit/miss or TTL expiry)
-- [ ] Confirm no service exposes unnecessary ports to the host
+- [x] Bring up the full stack with `docker compose up --build`
+- [x] Verify frontend loads through Nginx on the host port
+- [x] Verify API requests succeed through Nginx and return expected data
+- [x] Verify MongoDB data persists across container restarts
+- [x] Verify Redis cache behavior (cache hit/miss or TTL expiry)
+- [x] Confirm no service exposes unnecessary ports to the host
 
 ---
 
