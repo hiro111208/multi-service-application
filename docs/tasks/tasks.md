@@ -6,10 +6,10 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 1. Project scaffolding
 
-- [ ] Create root project layout (`web/`, `api/`, `nginx/`, `docker/`, etc.)
-- [ ] Add a root `.env.example` for non-secret configuration values
-- [ ] Add a root `.gitignore` (node_modules, Python cache, `.env`, build artifacts)
-- [ ] Document local setup and startup in `README.md`
+- [x] Create root project layout (`web/`, `api/`, `nginx/`, `docker/`, etc.)
+- [x] Add a root `.env.example` for non-secret configuration values
+- [x] Add a root `.gitignore` (node_modules, Python cache, `.env`, build artifacts)
+- [x] Document local setup and startup in `README.md`
 
 ---
 
