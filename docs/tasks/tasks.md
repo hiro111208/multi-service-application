@@ -56,12 +56,12 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 6. Reverse proxy (Nginx)
 
-- [ ] Create Nginx configuration to route traffic:
-  - [ ] `/` → web application
-  - [ ] `/api` (or equivalent) → Flask API
-- [ ] Add Nginx service to Docker Compose
-- [ ] Expose only Nginx to the host (single public entry point)
-- [ ] Add a Docker health check for the Nginx container
+- [x] Create Nginx configuration to route traffic:
+  - [x] `/` → web application
+  - [x] `/api` (or equivalent) → Flask API
+- [x] Add Nginx service to Docker Compose
+- [x] Expose only Nginx to the host (single public entry point)
+- [x] Add a Docker health check for the Nginx container
 
 ---
 

@@ -58,30 +58,35 @@ docker compose version
 
    Edit `docker/secrets/mongodb_password` with a strong password. Secret files must not be committed to git.
 
-4. **Build custom API base image** (required before first compose build)
+4. **Build custom base images** (required before first compose build)
 
    ```bash
    docker build -f api/docker/Dockerfile.base -t multi-service-api-base ./api
+   docker build -f web/docker/Dockerfile.base -t multi-service-web-base ./web
    ```
 
 ## Running the application
 
-Start MongoDB, Redis, and the API:
+Start the full stack:
+
+```bash
+docker compose up -d --build
+```
+
+Open the app at `http://localhost:8080` (or the port set in `.env`).
+
+Verify routing through Nginx:
+
+```bash
+curl -s http://localhost:8080/health
+curl -s http://localhost:8080/api/health
+curl -s http://localhost:8080/api/ready
+```
+
+Start individual services for development:
 
 ```bash
 docker compose up -d mongodb redis api
-```
-
-Verify MongoDB connectivity:
-
-```bash
-docker compose exec api curl -s http://localhost:5000/ready
-```
-
-Once the full stack is complete, start everything with:
-
-```bash
-docker compose up --build
 ```
 
 Then open the app at `http://localhost:8080` (or the port set in `.env`).
