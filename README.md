@@ -11,6 +11,7 @@ A multi-service Docker application with a React frontend, Flask API, MongoDB dat
 ├── nginx/               # Nginx reverse proxy configuration
 │   └── conf.d/
 ├── docker/
+│   ├── mongodb/         # MongoDB entrypoint & healthcheck scripts
 │   └── secrets/         # Docker secret files (git-ignored)
 ├── docs/
 │   ├── requirements/
@@ -49,15 +50,35 @@ docker compose version
 
    Edit `.env` if you need to change ports or service names. Sensitive values (database passwords, API keys) are managed separately via Docker secrets in `docker/secrets/` and will be wired up in a later task.
 
-3. **Create Docker secret files** *(coming in task 8)*
+3. **Create Docker secret files**
 
-   Secret files will live in `docker/secrets/` and must not be committed to git.
+   ```bash
+   cp docker/secrets/mongodb_password.example docker/secrets/mongodb_password
+   ```
+
+   Edit `docker/secrets/mongodb_password` with a strong password. Secret files must not be committed to git.
+
+4. **Build custom API base image** (required before first compose build)
+
+   ```bash
+   docker build -f api/docker/Dockerfile.base -t multi-service-api-base ./api
+   ```
 
 ## Running the application
 
-> Docker Compose and service Dockerfiles are not yet implemented. These instructions will be updated as each component is added.
+Start MongoDB and the API:
 
-Once the stack is complete, start everything with:
+```bash
+docker compose up -d mongodb api
+```
+
+Verify MongoDB connectivity:
+
+```bash
+docker compose exec api curl -s http://localhost:5000/ready
+```
+
+Once the full stack is complete, start everything with:
 
 ```bash
 docker compose up --build

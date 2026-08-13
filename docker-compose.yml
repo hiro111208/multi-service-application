@@ -1,0 +1,73 @@
+name: ${COMPOSE_PROJECT_NAME:-multi-service-app}
+
+services:
+  mongodb:
+    image: mongo:7.0
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_DATABASE: ${MONGODB_DATABASE}
+    secrets:
+      - mongodb_password
+    entrypoint: ["/bin/bash", "/docker-entrypoint-init.sh"]
+    command: ["mongod"]
+    volumes:
+      - mongodb_data:/data/db
+      - ./docker/mongodb/docker-entrypoint-init.sh:/docker-entrypoint-init.sh:ro
+      - ./docker/mongodb/healthcheck.sh:/healthcheck.sh:ro
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "/bin/bash", "/healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: multi-service-api-base:latest
+    image: multi-service-api:latest
+    restart: unless-stopped
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: ${MONGODB_PORT}
+      MONGODB_DATABASE: ${MONGODB_DATABASE}
+      MONGODB_USER: ${MONGODB_USER}
+      MONGODB_AUTH_SOURCE: ${MONGODB_AUTH_SOURCE}
+      MONGODB_PASSWORD_FILE: /run/secrets/mongodb_password
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_DB: ${REDIS_DB}
+      CACHE_TTL_SECONDS: ${CACHE_TTL_SECONDS}
+    secrets:
+      - mongodb_password
+    networks:
+      - app-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+secrets:
+  mongodb_password:
+    file: ./docker/secrets/mongodb_password
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge

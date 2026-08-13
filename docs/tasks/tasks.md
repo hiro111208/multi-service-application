@@ -37,11 +37,11 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 4. Database (MongoDB)
 
-- [ ] Add MongoDB service definition to Docker Compose
-- [ ] Configure a named Docker volume for persistent MongoDB data
-- [ ] Wire MongoDB credentials via Docker secrets (not plain env vars in compose)
-- [ ] Add a Docker health check for the MongoDB container
-- [ ] Verify the API can connect to MongoDB on the internal network
+- [x] Add MongoDB service definition to Docker Compose
+- [x] Configure a named Docker volume for persistent MongoDB data
+- [x] Wire MongoDB credentials via Docker secrets (not plain env vars in compose)
+- [x] Add a Docker health check for the MongoDB container
+- [x] Verify the API can connect to MongoDB on the internal network
 
 ---
 
