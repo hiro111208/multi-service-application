@@ -15,12 +15,12 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 2. Web application (React)
 
-- [ ] Scaffold a basic React frontend (build tooling, entry point, minimal UI)
-- [ ] Add a simple page that calls the API and displays the response
-- [ ] Create a custom base image Dockerfile for the web service
-- [ ] Implement a multi-stage Dockerfile (build stage → minimal runtime/nginx or static server stage)
-- [ ] Optimize the web Dockerfile (layer caching, `.dockerignore`, slim final image)
-- [ ] Add a Docker health check for the web container
+- [x] Scaffold a basic React frontend (build tooling, entry point, minimal UI)
+- [x] Add a simple page that calls the API and displays the response
+- [x] Create a custom base image Dockerfile for the web service
+- [x] Implement a multi-stage Dockerfile (build stage → minimal runtime/nginx or static server stage)
+- [x] Optimize the web Dockerfile (layer caching, `.dockerignore`, slim final image)
+- [x] Add a Docker health check for the web container
 
 ---
 

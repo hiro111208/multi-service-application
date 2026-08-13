@@ -3,7 +3,7 @@
 ## Architecture
 
 - Backend: Flask
-- Frontend: React
+- Frontend: React, TypeScript, Vite
 - Database: MongoDB
 - Cache: Redis
 - Reverse Proxy: Nginx

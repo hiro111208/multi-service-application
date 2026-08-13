@@ -1,0 +1,10 @@
+# Custom base image for the React web application.
+# Build: docker build -f docker/Dockerfile.base -t multi-service-web-base .
+FROM node:22-alpine
+
+LABEL org.opencontainers.image.title="multi-service-web-base"
+LABEL org.opencontainers.image.description="Custom Node.js base image for the web service"
+
+WORKDIR /app
+
+RUN apk add --no-cache libc6-compat
