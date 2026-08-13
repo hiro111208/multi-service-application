@@ -10,13 +10,11 @@ A multi-service Docker application with a React frontend, Flask API, MongoDB dat
 ├── web/                 # React frontend service
 ├── nginx/               # Nginx reverse proxy configuration
 │   └── conf.d/
+├── docker-compose.yml   # Full multi-service orchestration
 ├── docker/
 │   ├── mongodb/         # MongoDB entrypoint & healthcheck scripts
+│   ├── scripts/         # Compose helper scripts
 │   └── secrets/         # Docker secret files (git-ignored)
-├── docs/
-│   ├── requirements/
-│   └── tasks/
-├── docker-compose.yml   # (added in a later task)
 ├── .env.example         # Non-secret configuration template
 └── README.md
 ```
@@ -65,6 +63,13 @@ docker compose version
    docker build -f web/docker/Dockerfile.base -t multi-service-web-base ./web
    ```
 
+   Or use the helper script to build bases and start the stack:
+
+   ```bash
+   chmod +x docker/scripts/up.sh
+   ./docker/scripts/up.sh
+   ```
+
 ## Running the application
 
 Start the full stack:
@@ -75,6 +80,18 @@ docker compose up -d --build
 
 Open the app at `http://localhost:8080` (or the port set in `.env`).
 
+### Service orchestration
+
+| Service | Hostname | Depends on | Host port |
+|---------|----------|------------|-----------|
+| mongodb | `mongodb` | — | — |
+| redis | `redis` | — | — |
+| api | `api` | mongodb, redis (healthy) | — |
+| web | `web` | — | — |
+| nginx | `nginx` | web, api (healthy) | `${NGINX_HTTP_PORT}` |
+
+All services share the `app-network` bridge network. Only nginx is exposed to the host.
+
 Verify routing through Nginx:
 
 ```bash
@@ -82,14 +99,6 @@ curl -s http://localhost:8080/health
 curl -s http://localhost:8080/api/health
 curl -s http://localhost:8080/api/ready
 ```
-
-Start individual services for development:
-
-```bash
-docker compose up -d mongodb redis api
-```
-
-Then open the app at `http://localhost:8080` (or the port set in `.env`).
 
 Useful commands:
 

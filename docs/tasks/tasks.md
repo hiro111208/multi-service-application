@@ -67,11 +67,11 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 7. Docker Compose orchestration
 
-- [ ] Create `docker-compose.yml` defining all services: web, api, mongodb, redis, nginx
-- [ ] Define a custom Docker network and attach all services to it
-- [ ] Configure service dependencies (`depends_on` with health conditions where supported)
-- [ ] Map internal service hostnames for inter-service communication
-- [ ] Add compose profiles or overrides only if needed for dev vs prod
+- [x] Create `docker-compose.yml` defining all services: web, api, mongodb, redis, nginx
+- [x] Define a custom Docker network and attach all services to it
+- [x] Configure service dependencies (`depends_on` with health conditions where supported)
+- [x] Map internal service hostnames for inter-service communication
+- [x] Add compose profiles or overrides only if needed for dev vs prod
 
 ---
 
