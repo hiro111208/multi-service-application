@@ -13,3 +13,6 @@ docker/Dockerfile.base
 .gitignore
 .pytest_cache
 .mypy_cache
+tests
+requirements-dev.txt
+pytest.ini

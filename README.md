@@ -172,6 +172,16 @@ Confirm a clean reproducible build:
 ./docker/scripts/rebuild.sh
 ```
 
+### Automated testing
+
+```bash
+# Unit & integration tests (API + Web)
+./scripts/test.sh
+
+# End-to-end stack validation (requires Docker)
+./docker/scripts/validate.sh
+```
+
 Useful commands:
 
 ```bash
