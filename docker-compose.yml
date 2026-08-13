@@ -40,6 +40,8 @@ services:
     depends_on:
       mongodb:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: ${MONGODB_PORT}
@@ -61,12 +63,33 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
 secrets:
   mongodb_password:
     file: ./docker/secrets/mongodb_password
 
 volumes:
   mongodb_data:
+  redis_data:
 
 networks:
   app-network:

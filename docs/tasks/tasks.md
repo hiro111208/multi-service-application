@@ -47,10 +47,10 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 5. Cache (Redis)
 
-- [ ] Add Redis service definition to Docker Compose
-- [ ] Configure a named Docker volume for persistent Redis data (if persistence is required)
-- [ ] Add a Docker health check for the Redis container
-- [ ] Verify the API can connect to Redis on the internal network
+- [x] Add Redis service definition to Docker Compose
+- [x] Configure a named Docker volume for persistent Redis data (if persistence is required)
+- [x] Add a Docker health check for the Redis container
+- [x] Verify the API can connect to Redis on the internal network
 
 ---
 

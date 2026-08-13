@@ -66,10 +66,10 @@ docker compose version
 
 ## Running the application
 
-Start MongoDB and the API:
+Start MongoDB, Redis, and the API:
 
 ```bash
-docker compose up -d mongodb api
+docker compose up -d mongodb redis api
 ```
 
 Verify MongoDB connectivity:
