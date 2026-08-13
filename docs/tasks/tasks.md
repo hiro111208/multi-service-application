@@ -77,10 +77,10 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 8. Docker secrets
 
-- [ ] Create secret files (e.g., MongoDB root password, API secret key)
-- [ ] Mount secrets into relevant containers via Docker Compose `secrets`
-- [ ] Update API and database startup to read credentials from secret mounts
-- [ ] Ensure secrets are excluded from git and documented in `.env.example` / README
+- [x] Create secret files (e.g., MongoDB root password, API secret key)
+- [x] Mount secrets into relevant containers via Docker Compose `secrets`
+- [x] Update API and database startup to read credentials from secret mounts
+- [x] Ensure secrets are excluded from git and documented in `.env.example` / README
 
 ---
 

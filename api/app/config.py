@@ -13,6 +13,8 @@ def read_secret(name: str, default: str = "") -> str:
 
 
 class Config:
+    SECRET_KEY = read_secret("SECRET_KEY")
+
     MONGODB_HOST = os.getenv("MONGODB_HOST", "mongodb")
     MONGODB_PORT = int(os.getenv("MONGODB_PORT", "27017"))
     MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "app")

@@ -6,6 +6,7 @@
 # Docker secrets (real values — never commit)
 docker/secrets/*
 !docker/secrets/.gitignore
+!docker/secrets/*.example
 
 # Node / React
 node_modules/

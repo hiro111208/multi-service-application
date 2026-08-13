@@ -52,9 +52,15 @@ docker compose version
 
    ```bash
    cp docker/secrets/mongodb_password.example docker/secrets/mongodb_password
+   cp docker/secrets/api_secret_key.example docker/secrets/api_secret_key
    ```
 
-   Edit `docker/secrets/mongodb_password` with a strong password. Secret files must not be committed to git.
+   Edit both files with strong values. Secret files are mounted at `/run/secrets/` inside containers and must not be committed to git.
+
+   | Secret file | Mounted in | Used by |
+   |-------------|------------|---------|
+   | `mongodb_password` | mongodb, api | MongoDB root password |
+   | `api_secret_key` | api | Flask `SECRET_KEY` |
 
 4. **Build custom base images** (required before first compose build)
 

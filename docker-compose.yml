@@ -81,12 +81,14 @@ services:
       MONGODB_USER: ${MONGODB_USER}
       MONGODB_AUTH_SOURCE: ${MONGODB_AUTH_SOURCE}
       MONGODB_PASSWORD_FILE: /run/secrets/mongodb_password
+      SECRET_KEY_FILE: /run/secrets/api_secret_key
       REDIS_HOST: redis
       REDIS_PORT: ${REDIS_PORT}
       REDIS_DB: ${REDIS_DB}
       CACHE_TTL_SECONDS: ${CACHE_TTL_SECONDS}
     secrets:
       - mongodb_password
+      - api_secret_key
     networks:
       - app-network
     healthcheck:
@@ -152,6 +154,8 @@ services:
 secrets:
   mongodb_password:
     file: ./docker/secrets/mongodb_password
+  api_secret_key:
+    file: ./docker/secrets/api_secret_key
 
 volumes:
   mongodb_data:
