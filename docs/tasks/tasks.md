@@ -26,12 +26,12 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 3. API service (Flask)
 
-- [ ] Scaffold a Flask app with a basic health/readiness endpoint
-- [ ] Add at least one API endpoint that reads or writes application data via MongoDB
-- [ ] Integrate Redis for caching (e.g., cache API responses or session data)
-- [ ] Create a custom base image Dockerfile for the API service
-- [ ] Optimize the API Dockerfile (layer caching, `.dockerignore`, slim final image)
-- [ ] Add a Docker health check for the API container
+- [x] Scaffold a Flask app with a basic health/readiness endpoint
+- [x] Add at least one API endpoint that reads or writes application data via MongoDB
+- [x] Integrate Redis for caching (e.g., cache API responses or session data)
+- [x] Create a custom base image Dockerfile for the API service
+- [x] Optimize the API Dockerfile (layer caching, `.dockerignore`, slim final image)
+- [x] Add a Docker health check for the API container
 
 ---
 
