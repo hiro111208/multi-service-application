@@ -113,6 +113,6 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 12. Final optimization pass
 
-- [ ] Review all image sizes (`docker images`) and reduce where possible
-- [ ] Review build times and improve layer ordering / cache reuse
-- [ ] Run a full teardown and rebuild to confirm reproducible builds
+- [x] Review all image sizes (`docker images`) and reduce where possible
+- [x] Review build times and improve layer ordering / cache reuse
+- [x] Run a full teardown and rebuild to confirm reproducible builds

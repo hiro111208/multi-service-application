@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 echo "Building custom base images..."
 docker build -f "$ROOT_DIR/api/docker/Dockerfile.base" -t multi-service-api-base "$ROOT_DIR/api"

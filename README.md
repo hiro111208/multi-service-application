@@ -157,6 +157,21 @@ Run the full validation suite (stack health, Nginx routing, MongoDB persistence,
 ./docker/scripts/validate.sh
 ```
 
+### Optimization
+
+Production images use multi-stage builds with BuildKit cache mounts for dependency layers:
+
+| Image | Base | Approx. size |
+|-------|------|--------------|
+| `multi-service-web` | `nginx:1.27-alpine` | ~76 MB |
+| `multi-service-api` | `python:3.12-slim` | ~255 MB |
+
+Confirm a clean reproducible build:
+
+```bash
+./docker/scripts/rebuild.sh
+```
+
 Useful commands:
 
 ```bash

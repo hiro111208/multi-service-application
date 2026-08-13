@@ -5,10 +5,11 @@
 ARG BASE_IMAGE=multi-service-web-base:latest
 FROM ${BASE_IMAGE} AS base
 
-# Install dependencies in a dedicated layer for cache reuse
+# Dependencies — cached layer; only rebuilds when lockfile changes
 FROM base AS deps
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci
 
 # Build static assets
 FROM base AS build
@@ -17,7 +18,7 @@ COPY . .
 ENV NODE_ENV=production
 RUN npm run build
 
-# Minimal runtime image serving the production bundle
+# Minimal runtime — nginx alpine serving static files only
 FROM nginx:1.27-alpine AS runtime
 
 COPY nginx.main.conf /etc/nginx/nginx.conf

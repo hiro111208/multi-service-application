@@ -6,6 +6,8 @@ dist
 .env.*
 *.md
 Dockerfile
-docker/Dockerfile.base
+docker/
 .oxlintrc.json
 README.md
+src/assets
+public/icons.svg
