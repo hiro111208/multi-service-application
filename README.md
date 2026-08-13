@@ -124,6 +124,31 @@ docker compose ps
 | redis | — | `redis-cli ping` |
 | nginx | — | `GET /health` |
 
+### Logging
+
+All services use the `json-file` logging driver with rotation (`max-size: 10m`, `max-file: 3`). Application processes write to stdout/stderr so Docker can capture logs:
+
+| Service | Log destination |
+|---------|-----------------|
+| api | Gunicorn access/error → stdout/stderr |
+| web | Nginx access → stdout, errors → stderr |
+| nginx | Nginx access → stdout, errors → stderr |
+| mongodb, redis | Process stdout/stderr |
+
+Inspect logs:
+
+```bash
+# All services (follow)
+docker compose logs -f
+
+# Single service
+docker compose logs -f api
+docker compose logs -f nginx
+
+# Recent lines
+docker compose logs --tail=100 api
+```
+
 Useful commands:
 
 ```bash

@@ -94,9 +94,9 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 10. Logging and log rotation
 
-- [ ] Configure Docker logging driver options for all services (e.g., `json-file` with size/file limits)
-- [ ] Ensure application logs go to stdout/stderr (12-factor) for Docker to capture
-- [ ] Document how to inspect logs (`docker compose logs`) in README
+- [x] Configure Docker logging driver options for all services (e.g., `json-file` with size/file limits)
+- [x] Ensure application logs go to stdout/stderr (12-factor) for Docker to capture
+- [x] Document how to inspect logs (`docker compose logs`) in README
 
 ---
 

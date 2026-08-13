@@ -12,6 +12,12 @@
 
 name: ${COMPOSE_PROJECT_NAME:-multi-service-app}
 
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   mongodb:
     image: mongo:7.0
@@ -35,11 +41,7 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
 
   redis:
     image: redis:7.4-alpine
@@ -55,11 +57,7 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
 
   api:
     build:
@@ -97,11 +95,7 @@ services:
       timeout: 3s
       retries: 3
       start_period: 10s
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
 
   web:
     build:
@@ -119,11 +113,7 @@ services:
       timeout: 3s
       retries: 3
       start_period: 5s
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
 
   nginx:
     image: nginx:1.27-alpine
@@ -136,6 +126,7 @@ services:
     ports:
       - "${NGINX_HTTP_PORT:-8080}:80"
     volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - app-network
@@ -145,11 +136,7 @@ services:
       timeout: 3s
       retries: 3
       start_period: 5s
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
 
 secrets:
   mongodb_password:
