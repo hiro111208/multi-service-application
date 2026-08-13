@@ -86,9 +86,9 @@ Actionable breakdown of [requirements](../requirements/requirements.md).
 
 ## 9. Health checks
 
-- [ ] Define `HEALTHCHECK` in each custom Dockerfile (web, api)
-- [ ] Define health checks in Compose for infrastructure services (mongodb, redis, nginx)
-- [ ] Confirm `docker compose ps` shows all services as healthy after startup
+- [x] Define `HEALTHCHECK` in each custom Dockerfile (web, api)
+- [x] Define health checks in Compose for infrastructure services (mongodb, redis, nginx)
+- [x] Confirm `docker compose ps` shows all services as healthy after startup
 
 ---
 

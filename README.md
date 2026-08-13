@@ -106,6 +106,24 @@ curl -s http://localhost:8080/api/health
 curl -s http://localhost:8080/api/ready
 ```
 
+Check that all containers are healthy:
+
+```bash
+docker compose ps
+# or wait until every service reports healthy
+./docker/scripts/wait-healthy.sh
+```
+
+### Health checks
+
+| Service | Dockerfile `HEALTHCHECK` | Compose health check |
+|---------|--------------------------|----------------------|
+| web | `GET /health` | `GET /health` |
+| api | `GET /health` | `GET /health` |
+| mongodb | — | authenticated `mongosh ping` |
+| redis | — | `redis-cli ping` |
+| nginx | — | `GET /health` |
+
 Useful commands:
 
 ```bash
